@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJEX File</title>
+</head>
+
+<body>
+    <h1 id="demo">Hello AJAX</h1>
+    <button onclick="loaddata()">Click</button>
+    <script>
+        function loaddata() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open('GET', "https://jsonplaceholder.typicode.com/posts", true);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("demo").innerHTML = this.responseText;
+                    var data = JSON.parse(this.responseText);
+                    console.log(data);
+                }
+                else if (this.readyState == 4 && this.status != 200) {
+                    document.getElementById("demo").innerHTML = "Some Error Occured";
+                }
+            }
+            xhttp.send();
+        }
+    </script>
+</body>
+
+</html>
